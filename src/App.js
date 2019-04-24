@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Raining from './Raining';
 // import Background from './Background';
 import Credit from './Credit';
+// import Unsplash from 'unsplash-js';
 import {
   Box,
   Image,
@@ -11,7 +12,7 @@ import {
 
 //hiding the key so it doesn't show up when committed
 const api_key = process.env.REACT_APP_WEATHER_API_KEY;
-const Unsplash = require('unsplash-js').default;
+// const Unsplash = require('unsplash-js').default;
 const appid_unsplash = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
 const axios = require('axios');
 
@@ -38,11 +39,10 @@ class App extends Component {
     console.log(response);
   };
 
-  //i feel like i can transform this into a stateless function but i'm not sure what the best practices are
   //this function will get the data from Unsplash using axios
   //it will return two objects: results and user
   //it will move those objects into state
-  //so that it can be accessed by credit and background
+  //so that it can be accessed by Credit and Background components
   async getBackgroundUnsplash() {
     let data;
     try{
@@ -52,15 +52,20 @@ class App extends Component {
         ).then(response => { return response })
         .then(response => { 
           return response.data.results[0]; 
-          //return the first object that will show
-          //IMPROVEMENT return a random photo
+          //return the results of the first object that will show
+          //this will return all data of the first photo including url and user
+          //IMPROVEMENT return a random photo of seattle
            }) 
     } catch(err) {
         console.log('Fetch error', err);
       };
 
       this.setState({
-        url: data.urls.full
+        url: data.urls.full,
+        user: {
+          username: data.user.username,
+          url: data.user.links.self
+        }
       })
       // return url; //for testing
   };
@@ -79,20 +84,26 @@ class App extends Component {
       }
       return (
         <div className="App" style={Background}>
-          <div>
+          <Box
+           p={5}>
+
             {/* returns a phrase if isRaining is true/false */}
             <Heading 
               color="white"
               textAlign="center"
               fontFamily="Futura"
-              fontSize="5em">
+              fontSize="5em"
+              pt={5}>
               <Raining isRaining={this.state.isRaining} />
             </Heading>
             
-
-            {/* <Background getUrl={this.state.url} /> */}
-            <Credit />
-          </div>
+            <Text
+              color="white"
+              fontFamily="Futura"
+              fontSize={1}>
+              <Credit getUser={this.state.user} />
+            </Text>
+          </Box>
         </div>
       );
   };
