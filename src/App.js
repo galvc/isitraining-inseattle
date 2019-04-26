@@ -3,12 +3,8 @@ import Raining from './Raining';
 // import Background from './Background';
 import Credit from './Credit';
 // import Unsplash from 'unsplash-js';
-import {
-  Box,
-  Image,
-  Heading,
-  Text
-} from 'rebass'
+// import { Grommet, Heading, Box } from 'grommet';
+import styled, { css } from 'styled-components';
 
 //hiding the key so it doesn't show up when committed
 const api_key = process.env.REACT_APP_WEATHER_API_KEY;
@@ -16,6 +12,32 @@ const api_key = process.env.REACT_APP_WEATHER_API_KEY;
 const appid_unsplash = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
 const axios = require('axios');
 
+const Heading = styled.h1`
+        margin: 0;
+        padding-top: 2em;
+        font-size: 5em;
+      `;
+
+const Background = styled.div`
+  background: url('${props => props.bgImage || "black"}');
+  background-size: cover;
+  min-height: 100vh;
+  box-sizing: border-box;
+`;
+
+const Content = styled.div`
+  flex: 1;
+  text-align: center;
+  margin: 0;
+  padding: 4em;
+  text-align: center;
+  
+`;
+
+const Caption = styled.section`
+  font-size: 1em;
+  character-spacing: 10px;
+`;
 
 class App extends Component {
 
@@ -48,7 +70,7 @@ class App extends Component {
     try{
       data = await axios
         .get(
-          `https://api.unsplash.com/search/photos/?page=1&per_page=1&query=seattle&client_id=${appid_unsplash}`
+          `https://api.unsplash.com/search/photos/?query=seattle&client_id=${appid_unsplash}`
         ).then(response => { return response })
         .then(response => { 
           return response.data.results[0]; 
@@ -75,36 +97,26 @@ class App extends Component {
     this.getBackgroundUnsplash();
   };
   
-  render() {
-      const Background = {
-        // scale the background image for screen view
-        // backgroundImage: `(url${props.getUrl})`
-        // width: "100vw",
-        backgroundImage: "url(" + this.state.url + ")"
-      }
-      return (
-        <div className="App" style={Background}>
-          <Box
-           p={5}>
+  
 
-            {/* returns a phrase if isRaining is true/false */}
-            <Heading 
-              color="white"
-              textAlign="center"
-              fontFamily="Futura"
-              fontSize="5em"
-              pt={5}>
+  render() {
+      
+
+      
+      return (
+          <Background bgImage={this.state.url}>  
+          <Content>   
+          Is it raining in Seattle?   
+          <Heading>
+              {/* returns a phrase if isRaining is true/false */}
               <Raining isRaining={this.state.isRaining} />
-            </Heading>
+          </Heading>
             
-            <Text
-              color="white"
-              fontFamily="Futura"
-              fontSize={1}>
-              <Credit getUser={this.state.user} />
-            </Text>
-          </Box>
-        </div>
+              <Caption>
+              <Credit getUser={this.state.user} />    
+              </Caption>
+          </Content>
+        </Background>
       );
   };
 }
