@@ -1,4 +1,12 @@
 body {
-  font-family: Futura;
-  color: white;
+    font-family: Futura;
+    color: white;
+}
+
+a:link,
+a:visited,
+a:active,
+a:hover {
+    font-style: italic;
+    color: white;
 }
