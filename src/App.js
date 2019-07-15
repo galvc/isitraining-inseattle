@@ -51,7 +51,7 @@ class App extends Component {
         );
         const response = await api_call.json();
 
-        if (response.main === "Rain") {
+        if (response.main === "Rain" || "Drizzle" || "Thunderstorm") {
             this.setState({ isRaining: true });
         }
         console.log(response);
