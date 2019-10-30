@@ -1,6 +1,6 @@
 body {
-    font-family: Futura;
-    color: white;
+    background: gray;
+    overflow: hidden;
 }
 
 a:link,
@@ -8,5 +8,6 @@ a:visited,
 a:active,
 a:hover {
     font-style: italic;
+    font-weight: 600;
     color: white;
 }

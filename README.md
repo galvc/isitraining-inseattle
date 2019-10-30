@@ -1,25 +1,26 @@
-## Is it raining in Seattle?
+# Is it raining in Seattle?
 It's always raining in Seattle.
 
-But now, you can know for sure! You're welcome.
+But now, you can know for sure! Now with added cities in the state of Washington.
 
 Visit the website [here](https://is-it-raining-in-seattle.netlify.com/)
 
 <img width="1392" alt="isitraininginseattle-screenshot" src="https://user-images.githubusercontent.com/26034240/56846009-5a337300-687e-11e9-9ad5-dfda0bc4fc44.png">
 
-(Ironically, I deployed the website on a sunny day...)
+## Tools and libraries
+Using axios, styled-components, Open Weather Map API, Unsplash API, ReactLazyLoad
+Using gitpod.io as a virtual workspace
+Deployed the website to netlify
 
+## Improvements
+### 10/30/19
+Randomized the photos that will show on the first load
+Refactored code
+Fetches photo that is less resource-heavy
+Used ReactLazyLoad to lazy load the background image
+Added error-catching when checking the weather. Select 'Tri-cities' in the dropdown box to see the error message.
+Reduced background opacity to make the text easier to read
+Fixed some broken links
 
-## Technical Environment
-Created with create-react-app. Used Open Weather Map API, Unsplash API, and styled-components.
-
-## Learnings
-Had a lot of fun learning promises with axios and styles with styled-components. 
-At first, I had decided to use libraries like Grommet, Bootstrap, or Rebass, but it just wasn't what I was looking for. I discovered styled-components were easier than I thought! Less back on forth on the docs and offers more flexibility with styling.
-Built and deployed the website to netlify
-
-
-## Future Improvements
-I will be tweaking the styling a little bit more, like overlaying a tint on the background image.
-I am also planning on deploying this.
-
+### Notes
+- Since I am using a virtual worksapce, I couldn't find the .env files that stores my api keys. I understand it needs to be hidden in a normal build
