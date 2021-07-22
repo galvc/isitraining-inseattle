@@ -1,10 +1,6 @@
 # Is it raining in Seattle?
 It's always raining in Seattle.
 
-But now, you can know for sure! Now with added cities in the state of Washington.
-
-Visit the website [here](https://is-it-raining-in-seattle.netlify.com/)
-
 <img width="1392" alt="isitraininginseattle-screenshot" src="https://user-images.githubusercontent.com/26034240/56846009-5a337300-687e-11e9-9ad5-dfda0bc4fc44.png">
 
 ## Tools and libraries
